@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 International Forum on Fire Safety Science and Fire Protection Technology</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* 顶部导航 */
+        nav {
+            background: #1a237e;
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+        }
+
+        /* 横幅 */
+        .banner {
+            height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('images/vined-budapest-3760434.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .banner h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            background: #ff6f00;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* 通用区块 */
+        .section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #1a237e;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            width: 100px;
+            height: 3px;
+            background: #ff6f00;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+        }
+
+        /* Topics 样式 */
+        .topics-list {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        .topics-list li {
+            list-style: none;
+            background: #f5f7ff;
+            margin: 0.8rem 0;
+            padding: 1rem 1.5rem;
+            border-left: 4px solid #1a237e;
+            border-radius: 4px;
+                /* 核心：固定高度，所有格子一样高 */
+            height: 80px;
+            display: flex;
+            align-items: center; /* 文字垂直居中 */
+        }
+
+        /* 组委会 卡片布局：取消并列，单列居中 */
+        .organizer-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .organizer-card {
+            background: #fff;
+            box-shadow: 0 2px 15px rgba(26, 35, 126, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            border-top: 5px solid #1a237e;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .organizer-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .organizer-card h3 {
+            color: #1a237e;
+            font-size: 1.35rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid #ff6f00;
+            display: inline-block;
+        }
+
+        .organizer-card ul {
+            list-style: none;
+            line-height: 2.1;
+            font-size: 1.05rem;
+            color: #333;
+        }
+
+        /* 卡片布局 */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        /* 日程表格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        table th, table td {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table th {
+            background: #1a237e;
+            color: white;
+        }
+
+        /* 联系表单 */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 2.2;
+            color: #333;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+        }
+
+        .contact-info strong {
+            color: #1a237e;
+        }
+
+        /* 页脚 */
+        footer {
+            background: #1a237e;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* 适配手机：双列变单列 */
+        @media (max-width: 768px) {
+            .topics-row {
+                grid-template-columns: 1fr !important;
+            }
+            .banner h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* =改变跳转位置= */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 130px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav>
+    <div class="nav-container">
+        <div class="logo">IFFSSFPT 2026</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#topics">Topics</a>
+            <a href="#dates">Important Dates</a>
+            <a href="#speakers">Speakers</a>
+            <a href="#schedule">Schedule</a>
+            <a href="#organizer">Organizer</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- 横幅 -->
+<section class="banner" id="home">
+    <div>
+        <h1>2026 International Forum on</h1>
+        <h1>Fire Safety Science and Fire Protection Technology</h1>
+        <p>Budapest | October 12–14, 2026</p>
+       
+    </div>
+</section>
+
+<!-- 关于会议 -->
+<section class="section" id="about">
+    <h2>About the Conference</h2>
+    <p style="text-align:justify; line-height:1.7; font-size:1.1rem;">
+        This is an international forum in the field of fire safety science research and fire protection development, aims at promoting international cooperation in fire safety science and the application of new fire protection technologies. The forum is jointly organized by four universities, Nanjing University of Science and Technology (China), University of Miskolc (Hungary), Ludovica National University of Public Service (Hungary), and Technical University in Zvolen (Slovakia). The forum will be held on the campus of Ludovica National University of Public Service in Budapest, the capital of Hungary, October 12 to 14, 2026.
+    </p>
+</section>
+
+<!-- 会议主题 双列并列布局 -->
+<section class="section" id="topics">
+    <h2>Conference Topics</h2>
+    <div class="topics-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1100px; margin: 0 auto;">
+        <!-- 左侧第一部分 -->
+        <div>
+            <h3 style="color:#1a237e; text-align:left; margin-top:1rem; margin-bottom:2rem; font-size:1.3rem;">Fire Safety Science Research</h3>
+            <ul class="topics-list">
+                <li>Characterization of Material Flammability</li>
+                <li>Fire Spread</li>
+                <li>Research on Flame-retardant Materials</li>
+            </ul>
+        </div>
+        <!-- 右侧第二部分 -->
+        <div>
+            <h3 style="color:#1a237e; text-align:left; margin-top:1rem; margin-bottom:2rem; font-size:1.3rem;">Advanced Fire Protection Technologies & Applications</h3>
+            <ul class="topics-list">
+                <li>Drone-based Early Warning and Firefighting</li>
+                <li>Development of Environmentally Friendly Fire Extinguishing Agents</li>
+                <li>Non-destructive Fire Protection for Historic Buildings</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- 重要日期 -->
+<section class="section" id="dates">
+    <h2>Important Dates</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>Confirm to attend the Forum</h3>
+            <p style="margin-top:1rem; margin-bottom:1rem;"><strong>Before</strong>  31 August 2026</p>
+        </div>
+        <div class="card">
+            <h3>Submission abstract of presentation and poster</h3>
+            <p style="margin-top:1rem; margin-bottom:1rem;"><strong>Before</strong>  30 September 2026</p>
+        </div>
+    </div>
+</section>
+
+<!-- 演讲嘉宾 -->
+<section class="section" id="speakers">
+    <h2>Keynote Speakers</h2>
+    <div class="cards">
+        <div class="card">
+            <img src="https://picsum.photos/id/1016/200/200" alt="Speaker">
+            <h3>Prof. Imre Miklós Szilágyi</h3>
+            <p>University of Miskolc, Hungary</p>
+        </div>
+        <div class="card">
+            <img src="https://picsum.photos/id/1012/200/200" alt="Speaker">
+            <h3>Prof. Andrea Majlingova</h3>
+            <p>Technical University in Zvolen, Slovak</p>
+        </div>
+        <div class="card">
+            <img src="https://picsum.photos/id/1005/200/200" alt="Speaker">
+            <h3>Prof. Qiang Xu</h3>
+            <p>Nanjing University of Science and Technology, China</p>
+        </div>
+
+        <div class="card">
+            <img src="https://picsum.photos/id/1026/200/200" alt="Speaker">
+            <h3>Prof. Agoston Restas</h3>
+            <p>Ludovica National University of Public Service, Hungary</p>
+        </div>
+    </div>
+</section>
+
+<!-- 会议日程 -->
+<!-- 会议日程：日期同天合并、第四列地点整列合并 -->
+<section class="section" id="schedule">
+    <h2>Conference Schedule</h2>
+    <table>
+        <colgroup>
+            <col style="width: 20%;">  <!-- Date -->
+            <col style="width: 20%;">  <!-- Time -->
+            <col style="width: 40%;">  <!-- Event -->
+            <col style="width: 20%;">  <!-- Location -->
+        </colgroup>
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Event</th>
+            <th>Location</th>
+        </tr>
+        <tr>
+            <td>October 11, 2026</td>
+            <td>13:00-17:00</td>
+            <td>Registration</td>
+            <td rowspan="11">Ludovica National University of Public Service, Budapest, Hungary</td>
+        </tr>
+        <tr>
+            <td rowspan="5">October 12, 2026</td>
+            <td>09:30-10:00</td>
+            <td>Open Speech</td>
+        </tr>
+        <tr>
+            <td>10:00-12:00</td>
+            <td>Keynote Speech</td>
+        </tr>
+        <tr>
+            <td>12:30-13:30</td>
+            <td>Lunch</td>
+        </tr>
+        <tr>
+            <td>14:00-17:30</td>
+            <td>Panel discussion</td>
+        </tr>
+        <tr>
+            <td>18:00-19:30</td>
+            <td>Dinner</td>
+        </tr>
+        <tr>
+            <td rowspan="4">October 13, 2026</td>
+            <td>09:30-12:00</td>
+            <td>Keynote Speech</td>
+        </tr>
+        <tr>
+            <td>12:30-13:30</td>
+            <td>Lunch</td>
+        </tr>
+        <tr>
+            <td>14:00-17:30</td>
+            <td>Panel discussion</td>
+        </tr>
+        <tr>
+            <td>18:00-19:30</td>
+            <td>Dinner</td>
+        </tr>
+        <tr>
+            <td>October 14, 2026</td>
+            <td>10:30 - 14:30</td>
+            <td>Firefighting Training & Test</td>
+        </tr>
+    </table>
+</section>
+
+<!-- 组委会与主办单位 卡片单列居中、不并列排布 -->
+<section class="section" id="organizer">
+    <h2>Conference Organizer & Committees</h2>
+    <div class="organizer-wrap">
+        <div class="organizer-card">
+            <h3>Conference Organizer</h3>
+            <ul>
+                <li>Nanjing University of Science and Technology, China</li>
+                <li>University of Miskolc, Hungary</li>
+                <li>Ludovica National University of Public Service, Hungary</li>
+                <li>Technical University in Zvolen, Slovakia</li>
+            </ul>
+        </div>
+
+        <div class="organizer-card">
+            <h3>Conference Chair</h3>
+            <ul>
+                <li>Prof. Junwu Zhu, PhD, Vice President of Nanjing University of Science and Technology, China</li>
+            </ul>
+        </div>
+
+        <div class="organizer-card">
+            <h3>Conference Co-Chair</h3>
+            <ul>
+                <li>Prof. Qiang Xu, Nanjing University of Science and Technology, China</li>
+                <li>Prof. Imre Miklós Szilágyi, PhD, University of Miskolc, Hungary</li>
+                <li>Prof. Agoston Restas, PhD, Ludovica National University of Public Service, Hungary</li>
+                <li>Prof. Andrea Majlingova, PhD, Technical University in Zvolen, Slovak</li>
+            </ul>
+        </div>
+
+        <div class="organizer-card">
+            <h3>Program Committee & Secretary</h3>
+            <ul>
+                <li>Prof. Qiang Xu, PhD (China)</li>
+                <li>Prof. Imre Miklós Szilágyi, PhD (Hungary)</li>
+                <li>Prof. Agoston Restas, PhD (Hungary)</li>
+                <li>Prof. Andrea Majlingova, PhD (Slovak)</li>
+                <li>Assoc. prof. Yanfeng Cao, PhD (China)</li>
+                <li style="margin-top:10px;"><strong>Secretary:</strong> Miss Zhuofei He (China)</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<!-- 联系我们 -->
+<section class="section" id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+        <p><strong>Miss Zhuofei He</strong> (Nanjing University of Science and Technology)</p>
+        <p>E-mail: 714305560@qq.com</p>
+        <br>
+        <p><strong>?????</strong> (Hungary)</p>
+        <p>E-mail:</p>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer>
+    <p>&copy; 2026 International Forum on Fire Safety Science and Fire Protection Technology. All Rights Reserved.</p>
+
+</footer>
+
+</body>
+</html>
